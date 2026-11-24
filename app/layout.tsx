@@ -3,6 +3,7 @@ import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://synitysoft.com'),
