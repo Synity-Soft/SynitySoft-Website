@@ -323,6 +323,7 @@ export const content = {
           roleType: "leadership",
           bio: "Co-Founder & Board Director at SynitySoft, also serving as Chief Technology Officer (CTO) and Chief Operating Officer (COO). Shahriar oversees technical architecture, engineering execution, product strategy, and research in intelligent systems.",
           expertise: ["Software Architecture", "Full-Stack Engineering", "AI & ML Systems", "Offline-First Design"],
+          image: "/team/md-shahriar-rahman.png",
           links: {
             email: "mailto:mdshahriar.contact@gmail.com",
           },
@@ -745,6 +746,7 @@ export const content = {
           roleType: "leadership",
           bio: "সিনিটিসফটের সহ-প্রতিষ্ঠাতা ও বোর্ড পরিচালক, একইসাথে প্রধান প্রযুক্তি কর্মকর্তা (CTO) ও চিফ অপারেটিং কর্মকর্তা (COO)। শাহরিয়ার কোম্পানির প্রযুক্তিগত স্থাপত্য, সফটওয়্যার ইঞ্জিনিয়ারিং, পণ্য উন্নয়ন ও এআই গবেষণার নেতৃত্ব দেন।",
           expertise: ["সফটওয়্যার আর্কিটেকচার", "ফুল-স্ট্যাক ইঞ্জিনিয়ারিং", "এআই ও এমএল সিস্টেম", "অফলাইন-ফার্স্ট ডিজাইন"],
+          image: "/team/md-shahriar-rahman.png",
           links: {
             email: "mailto:mdshahriar.contact@gmail.com",
           },

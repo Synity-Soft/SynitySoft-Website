@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { 
   ShieldCheck, 
@@ -76,6 +77,17 @@ export default function TeamPage() {
                 className="bg-white rounded-3xl p-8 sm:p-10 border border-brand-surface/15 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
+                  {member.image && (
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-brand-surface/15 bg-brand-lightgreen mb-6">
+                      <Image
+                        src={member.image}
+                        alt={`${member.name} - ${member.designation}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 520px"
+                        className="object-cover object-[50%_22%]"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-start justify-between gap-4 mb-6">
                     <div>
                       <h3 className="text-2xl sm:text-3xl font-extrabold text-brand-dark">

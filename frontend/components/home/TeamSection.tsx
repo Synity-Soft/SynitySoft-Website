@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Mail, ShieldCheck, Code2 } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
@@ -47,6 +48,17 @@ export const TeamSection: React.FC = () => {
                   className="bg-brand-forest/90 border border-brand-border/80 rounded-3xl p-8 hover:border-brand-lime/50 transition-all duration-300 flex flex-col justify-between h-full group"
                 >
                   <div>
+                    {member.image && (
+                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-brand-border/50 bg-brand-surface mb-5">
+                        <Image
+                          src={member.image}
+                          alt={`${member.name} - ${member.designation}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 390px"
+                          className="object-cover object-[50%_22%]"
+                        />
+                      </div>
+                    )}
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div>
                         <h4 className="text-2xl font-bold text-white group-hover:text-brand-lime transition-colors">
