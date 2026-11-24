@@ -60,7 +60,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var m=localStorage.getItem('synitysoft_theme_mode');var d=m==='dark'||(m!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.add(d?'dark':'light');document.documentElement.style.colorScheme=d?'dark':'light'}catch(e){}})();`,
+            __html: `(function(){try{var m=localStorage.getItem('synitysoft_theme_mode');var d=m==='dark'||(m!=='light'&&window.matchMedia('(prefers-color-scheme: dark)').matches);var r=document.documentElement;r.classList.add(d?'dark':'light');r.dataset.theme=d?'dark':'light';r.style.colorScheme=d?'dark':'light'}catch(e){}})();`,
           }}
         />
       </head>

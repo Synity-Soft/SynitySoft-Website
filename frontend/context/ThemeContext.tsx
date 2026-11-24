@@ -49,6 +49,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const handler = (e: MediaQueryListEvent) => {
         root.classList.toggle("dark", e.matches);
         root.classList.toggle("light", !e.matches);
+        root.dataset.theme = e.matches ? "dark" : "light";
+        root.style.colorScheme = e.matches ? "dark" : "light";
+        setResolvedMode(e.matches ? "dark" : "light");
       };
       media.addEventListener("change", handler);
       return () => media.removeEventListener("change", handler);
@@ -71,7 +74,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <ThemeContext.Provider value={{ mode, setMode, toggleMode }}>
+    <ThemeContext.Provider value={{ mode, resolvedMode, setMode, toggleMode }}>
       {children}
     </ThemeContext.Provider>
   );
