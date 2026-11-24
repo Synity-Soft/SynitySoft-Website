@@ -16,6 +16,9 @@ html {
   font-family: var(--font-manrope);
   background-color: #172D16;
   color: #F4F7EF;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html.lang-bn,
