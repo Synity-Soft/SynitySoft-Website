@@ -7,9 +7,16 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Sparkles, Terminal, Code2, ShieldAlert } from '@/components/ui/Icons';
 import { FloatingBrandElements } from '@/components/brand/FloatingBrandElements';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export const HeroSection: React.FC = () => {
   const { lang, t } = useLanguage();
+  const { mode } = useTheme();
+  const isDarkMode =
+    mode === "dark" ||
+    (mode === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
   const shouldReduceMotion = useReducedMotion();
 
   // Animation variants for choreographed reveal
@@ -66,7 +73,7 @@ export const HeroSection: React.FC = () => {
             
             <div className="relative w-12 h-30 sm:w-16 sm:h-40">
               <Image
-                src="/brand/symbol-lime.png"
+                src={isDarkMode ? "/brand/symbol-lime.png" : "/brand/symbol-dark.png"}
                 alt="SynitySoft Official Emblem"
                 fill
                 sizes="(max-width: 640px) 48px, 64px"

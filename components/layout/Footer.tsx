@@ -5,9 +5,16 @@ import Link from 'next/link';
 import { Mail, MapPin, Phone, ArrowUpRight, Heart, ShieldCheck } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export const Footer: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
+  const { mode } = useTheme();
+  const isDarkMode =
+    mode === "dark" ||
+    (mode === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   return (
     <footer className="bg-brand-dark border-t border-brand-border/60 text-brand-gray-300 relative overflow-hidden">
@@ -20,7 +27,7 @@ export const Footer: React.FC = () => {
           
           {/* Column 1 & 2: Brand Identity & About */}
           <div className="lg:col-span-2 space-y-5">
-            <SynityLogo variant="light" size="lg" />
+            <SynityLogo variant={isDarkMode ? "light" : "dark"} size="lg" />
             <p className="text-sm text-brand-gray-300 max-w-sm leading-relaxed">
               {t.footer.brandDesc}
             </p>

@@ -21,7 +21,9 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
-      if (stored) setModeState(stored);
+      if (stored === "light" || stored === "dark" || stored === "system") {
+        setModeState(stored);
+      }
     } catch {}
   }, []);
 
@@ -30,6 +32,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const root = document.documentElement;
     const apply = (m: ThemeMode) => {
       root.classList.remove("light", "dark");
+      root.style.colorScheme = "normal";
       if (m === "light") root.classList.add("light");
       else if (m === "dark") root.classList.add("dark");
       else {
@@ -37,6 +40,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         root.classList.toggle("dark", isDark);
         root.classList.toggle("light", !isDark);
+        root.style.colorScheme = isDark ? "dark" : "light";
+      }
+      if (m !== "system") {
+        root.style.colorScheme = m;
       }
     };
     apply(mode);
@@ -59,7 +66,11 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleMode = () => {
-    setMode(mode === "light" ? "dark" : mode === "dark" ? "light" : "system");
+    const isDark =
+      mode === "dark" ||
+      (mode === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setMode(isDark ? "light" : "dark");
   };
 
   return (

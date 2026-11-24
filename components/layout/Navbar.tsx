@@ -15,6 +15,11 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { lang, setLang, toggleLang, t } = useLanguage();
   const { mode, toggleMode } = useTheme();
+  const isDarkMode =
+    mode === "dark" ||
+    (mode === "system" &&
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,7 +45,7 @@ export const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* SynitySoft Logo */}
-          <SynityLogo variant="light" size="md" />
+          <SynityLogo variant={isDarkMode ? "light" : "dark"} size="md" />
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
@@ -115,6 +120,14 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
+            <button
+              type="button"
+              onClick={toggleMode}
+              className="p-2 rounded-lg text-brand-gray-200 hover:text-white hover:bg-white/10 transition-colors"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             {/* Compact Lang Switcher for Mobile */}
             <button
               onClick={toggleLang}

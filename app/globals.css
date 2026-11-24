@@ -32,6 +32,116 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+/* Light theme: invert the fixed dark surfaces while preserving brand accents. */
+html.light {
+  background-color: #F7FAF4;
+  color: #172D16;
+}
+
+html.light body,
+html.light .bg-brand-forest {
+  background-color: #F7FAF4;
+}
+
+html.light header,
+html.light header .bg-brand-forest,
+html.light .bg-brand-forest\/90,
+html.light .bg-brand-forest\/60,
+html.light .bg-brand-forest\/80,
+html.light .bg-brand-forest\/50 {
+  background-color: rgba(247, 250, 244, 0.96);
+}
+
+html.light .bg-brand-offwhite {
+  background-color: #FFFFFF;
+}
+
+html.light .bg-brand-dark {
+  background-color: #EEF3EA;
+}
+
+html.light .bg-brand-surface,
+html.light .bg-brand-surface\/80,
+html.light .bg-brand-surface\/70,
+html.light .bg-brand-surface\/60,
+html.light .bg-brand-surface\/50,
+html.light .bg-brand-surface\/30 {
+  background-color: #E8EFE3;
+}
+
+html.light .bg-brand-lightgreen,
+html.light .bg-brand-lightgreen\/60,
+html.light .bg-brand-lightgreen\/50,
+html.light .bg-brand-lightgreen\/40,
+html.light .bg-brand-lightgreen\/30 {
+  background-color: #EDF3E8;
+}
+
+html.light .bg-white,
+html.light .bg-white\/5,
+html.light .bg-white\/10 {
+  background-color: #FFFFFF;
+}
+
+html.light .text-white,
+html.light .text-brand-offwhite {
+  color: #172D16;
+}
+
+html.light .text-brand-forest,
+html.light .text-brand-dark {
+  color: #172D16;
+}
+
+html.light .text-brand-surface {
+  color: #355136;
+}
+
+html.light .text-brand-gray-200,
+html.light .text-brand-gray-300,
+html.light .text-brand-gray-400 {
+  color: #5E6B5C;
+}
+
+html.light .text-brand-lime {
+  color: #557500;
+}
+
+html.light .border-brand-border,
+html.light .border-brand-border\/80,
+html.light .border-brand-border\/60,
+html.light .border-brand-border\/50,
+html.light .border-brand-border\/40 {
+  border-color: #CBD7C5;
+}
+
+html.light .border-brand-surface\/20,
+html.light .border-brand-surface\/15,
+html.light .border-brand-surface\/10,
+html.light .border-brand-surface\/30,
+html.light .border-brand-surface\/50,
+html.light .border-brand-surface\/60,
+html.light .border-brand-surface\/80 {
+  border-color: #CBD7C5;
+}
+
+html.light .hover\:text-white:hover,
+html.light .hover\:bg-white\/5:hover,
+html.light .hover\:bg-white\/10:hover {
+  color: #172D16;
+}
+
+html.dark {
+  background-color: #172D16;
+  color: #F4F7EF;
+}
+
+html.dark body {
+  background-color: #172D16;
+  color: #F4F7EF;
 }
 
 /* Custom selection */
