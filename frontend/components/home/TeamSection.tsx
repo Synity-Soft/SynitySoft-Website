@@ -48,19 +48,19 @@ export const TeamSection: React.FC = () => {
                   className="bg-brand-forest/90 border border-brand-border/80 rounded-3xl p-8 hover:border-brand-lime/50 transition-all duration-300 flex flex-col justify-between h-full group"
                 >
                   <div>
-                    {member.image && (
-                      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-brand-border/50 bg-brand-surface mb-5">
-                        <Image
-                          src={member.image}
-                          alt={`${member.name} - ${member.designation}`}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 390px"
-                          className="object-cover object-[50%_22%]"
-                        />
-                      </div>
-                    )}
-                    <div className="flex items-start justify-between gap-4 mb-4">
-                      <div>
+                    <div className="flex flex-col sm:flex-row items-start gap-4 mb-4">
+                      {member.image && (
+                        <div className="relative h-44 w-36 flex-shrink-0 overflow-hidden rounded-2xl border border-brand-border/50 bg-brand-surface">
+                          <Image
+                            src={member.image}
+                            alt={`${member.name} - ${member.designation}`}
+                            fill
+                            sizes="144px"
+                            className="object-cover object-[50%_22%]"
+                          />
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
                         <h4 className="text-2xl font-bold text-white group-hover:text-brand-lime transition-colors">
                           {member.name}
                         </h4>
