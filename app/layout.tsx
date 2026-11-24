@@ -60,6 +60,7 @@ export default function RootLayout({
       </head>
       <body className="bg-brand-forest text-brand-offwhite antialiased min-h-screen flex flex-col">
         <ScrollProgress />
+        <ThemeProvider>
         <LanguageProvider>
           <Navbar />
           <main className="flex-grow">
@@ -67,6 +68,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </LanguageProvider>
+      </ThemeProvider>
       </body>
     </html>
   );
