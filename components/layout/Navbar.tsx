@@ -3,9 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Globe, ArrowUpRight } from '@/components/ui/Icons';
+import { Menu, X, Globe, ArrowUpRight, Sun, Moon } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
-import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
+
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
