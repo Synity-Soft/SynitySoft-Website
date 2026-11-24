@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Target, Compass, Sparkles, Shield, Award, Users, BookOpen, Check } from 'lucide-react';
+import { Target, Compass, Sparkles, Shield, Award, Users, BookOpen, Check } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const MissionVisionSection: React.FC = () => {

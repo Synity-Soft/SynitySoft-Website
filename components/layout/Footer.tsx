@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, MapPin, Phone, ArrowUpRight, Heart, ShieldCheck } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowUpRight, Heart, ShieldCheck } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
 import { useLanguage } from '@/context/LanguageContext';
 

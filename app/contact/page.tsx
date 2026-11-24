@@ -11,7 +11,7 @@ import {
   AlertCircle, 
   Sparkles,
   ShieldCheck
-} from 'lucide-react';
+} from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 import { FloatingBrandElements } from '@/components/brand/FloatingBrandElements';
 

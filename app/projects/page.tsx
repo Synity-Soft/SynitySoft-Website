@@ -14,7 +14,7 @@ import {
   Database,
   Wifi,
   WifiOff
-} from 'lucide-react';
+} from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 import { FloatingBrandElements } from '@/components/brand/FloatingBrandElements';
 import { CtaSection } from '@/components/home/CtaSection';

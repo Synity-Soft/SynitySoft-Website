@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles, MessageSquare } from 'lucide-react';
+import { ArrowRight, Sparkles, MessageSquare } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const CtaSection: React.FC = () => {

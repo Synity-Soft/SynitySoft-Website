@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, ShieldCheck, Award, ArrowUpRight, Code2 } from 'lucide-react';
+import { Mail, ShieldCheck, Award, ArrowUpRight, Code2 } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const TeamSection: React.FC = () => {

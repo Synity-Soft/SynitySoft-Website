@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Sparkles, Terminal, Code2, ShieldAlert } from 'lucide-react';
+import { ArrowRight, Sparkles, Terminal, Code2, ShieldAlert } from '@/components/ui/Icons';
 import { FloatingBrandElements } from '@/components/brand/FloatingBrandElements';
 import { useLanguage } from '@/context/LanguageContext';
 

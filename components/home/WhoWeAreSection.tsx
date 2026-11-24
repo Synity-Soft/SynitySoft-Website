@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Layers, Infinity as InfinityIcon, Code } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Layers, Infinity as InfinityIcon, Code } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const WhoWeAreSection: React.FC = () => {

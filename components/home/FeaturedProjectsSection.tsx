@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, Award, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Award, Sparkles, ExternalLink, ShieldCheck } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 export const FeaturedProjectsSection: React.FC = () => {

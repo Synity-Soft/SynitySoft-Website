@@ -11,7 +11,7 @@ import {
   Compass, 
   ArrowRight, 
   CheckCircle 
-} from 'lucide-react';
+} from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 
 const iconMap: Record<string, React.ReactNode> = {
