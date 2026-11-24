@@ -1,0 +1,72 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          forest: "#172D16",
+          dark: "#0F2411",
+          surface: "#233D25",
+          "surface-light": "#2E4E30",
+          border: "#3B553C",
+          lime: "#C7FF00",
+          "lime-hover": "#B3E600",
+          "lime-muted": "rgba(199, 255, 0, 0.15)",
+          offwhite: "#F4F7EF",
+          lightgreen: "#EAF0E5",
+          gray: {
+            50: "#FAFAF9",
+            100: "#F5F5F4",
+            200: "#E7E5E4",
+            300: "#D6D3D1",
+            400: "#A8A29E",
+            500: "#78716C",
+            600: "#57534E",
+            700: "#44403C",
+            800: "#292524",
+            900: "#1C1917",
+          },
+        },
+      },
+      fontFamily: {
+        sans: ["var(--font-manrope)", "var(--font-inter)", "system-ui", "sans-serif"],
+        bangla: ["var(--font-hind-siliguri)", "var(--font-noto-bengali)", "system-ui", "sans-serif"],
+      },
+      animation: {
+        "float-slow": "float 8s ease-in-out infinite",
+        "float-medium": "float 5s ease-in-out infinite",
+        "float-reverse": "floatReverse 7s ease-in-out infinite",
+        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
+        "spin-slow": "spin 25s linear infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(-14px) rotate(3deg)" },
+        },
+        floatReverse: {
+          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
+          "50%": { transform: "translateY(12px) rotate(-4deg)" },
+        },
+        pulseGlow: {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.06)" },
+        },
+      },
+      boxShadow: {
+        "lime-glow": "0 0 30px rgba(199, 255, 0, 0.25)",
+        "lime-glow-lg": "0 0 50px rgba(199, 255, 0, 0.35)",
+        "dark-card": "0 10px 30px -10px rgba(15, 36, 17, 0.5)",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;

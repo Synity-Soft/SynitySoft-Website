@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-manrope: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hind-siliguri: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
+  --font-noto-bengali: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-manrope);
+  background-color: #172D16;
+  color: #F4F7EF;
+}
+
+html.lang-bn,
+.lang-bn {
+  font-family: var(--font-hind-siliguri);
+  line-height: 1.65;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom selection */
+::selection {
+  background-color: #C7FF00;
+  color: #172D16;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0F2411;
+}
+::-webkit-scrollbar-thumb {
+  background: #233D25;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3B553C;
+}
+
+/* Subtle glow and utility effects */
+.glow-lime {
+  box-shadow: 0 0 25px rgba(199, 255, 0, 0.2);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
