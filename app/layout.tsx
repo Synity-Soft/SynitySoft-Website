@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Navbar } from '@/components/layout/Navbar';
