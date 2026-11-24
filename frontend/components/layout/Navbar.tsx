@@ -5,9 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Globe, ArrowUpRight, Sun, Moon, Monitor } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
-import { useTheme } from '@/context/ThemeContext';
+import { useTheme, ThemeMode } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
-
 
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,36 +15,40 @@ export const Navbar: React.FC = () => {
   const { lang, setLang, toggleLang, t } = useLanguage();
   const { mode, resolvedMode, setMode } = useTheme();
   const isDarkMode = resolvedMode === "dark";
+
   const ThemeOptions = ({ compact = false }: { compact?: boolean }) => (
     <div
-      className={`flex items-center rounded-full border border-brand-border/80 bg-brand-surface/80 p-1 ${compact ? 'gap-0.5' : 'gap-0.5'}`}
+      className={`flex items-center rounded-full border border-brand-border/80 bg-brand-surface/80 p-0.5 ${compact ? 'gap-0.5' : 'gap-0.5'}`}
       role="radiogroup"
-      aria-label="Theme"
+      aria-label="Theme selector"
     >
       {([
         ['light', 'Light', Sun],
         ['dark', 'Dark', Moon],
         ['system', 'System', Monitor],
-      ] as const).map(([value, label, Icon]) => (
-        <button
-          key={value}
-          type="button"
-          role="radio"
-          aria-checked={mode === value}
-          aria-label={`${label} theme`}
-          title={`${label} theme`}
-          onClick={() => setMode(value)}
-          className={`rounded-full transition-colors ${
-            compact ? 'p-1.5' : 'px-2 py-1'
-          } ${
-            mode === value
-              ? 'bg-brand-lime text-brand-forest'
-              : 'text-brand-gray-300 hover:text-white'
-          }`}
-        >
-          <Icon className={compact ? 'h-4 w-4' : 'h-3.5 w-3.5'} />
-        </button>
-      ))}
+      ] as const).map(([value, label, Icon]) => {
+        const isSelected = mode === value;
+        return (
+          <button
+            key={value}
+            type="button"
+            role="radio"
+            aria-checked={isSelected}
+            aria-label={`${label} mode`}
+            title={`${label} mode`}
+            onClick={() => setMode(value as ThemeMode)}
+            className={`rounded-full transition-all duration-200 flex items-center justify-center ${
+              compact ? 'p-1.5' : 'px-2 py-1'
+            } ${
+              isSelected
+                ? 'bg-brand-lime text-brand-forest shadow-sm font-semibold scale-105'
+                : 'text-brand-gray-300 hover:text-white opacity-75 hover:opacity-100'
+            }`}
+          >
+            <Icon className={compact ? 'h-3.5 w-3.5' : 'h-3.5 w-3.5'} />
+          </button>
+        );
+      })}
     </div>
   );
 
@@ -98,7 +101,7 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Action: Language Switcher & Contact Button */}
+          {/* Right Action: Theme Options, Language Switcher & Contact Button */}
           <div className="hidden sm:flex items-center gap-3">
             <ThemeOptions />
             {/* Bilingual Switcher Pill */}
@@ -139,7 +142,7 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button & Controls */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeOptions compact />
             {/* Compact Lang Switcher for Mobile */}
@@ -167,7 +170,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-brand-forest border-b border-brand-border/80 px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div className="md:hidden bg-brand-forest border-b border-brand-border/80 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-1">
             {t.nav.map((item) => {
               const isActive = pathname === item.href;

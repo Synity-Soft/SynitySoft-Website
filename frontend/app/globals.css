@@ -10,7 +10,9 @@
   --font-hind-siliguri: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
   --font-noto-bengali: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
 
-  /* Semantic theme tokens */
+  /* =========================================================================
+     DARK MODE (Default: SynitySoft Signature Dark Forest Green + Neon Lime)
+     ========================================================================= */
   --brand-primary: #172D16;
   --brand-strong: #0F2411;
   --brand-surface: #233D25;
@@ -21,33 +23,58 @@
   --brand-lime-muted: rgba(199, 255, 0, 0.15);
   --brand-offwhite: #F4F7EF;
   --brand-lightgreen: #EAF0E5;
+
+  /* Typography tokens */
   --text-primary: #F4F7EF;
   --text-secondary: #C4D0BD;
   --text-muted: #A7B6A1;
+
+  /* Surface tokens */
   --surface-card: #233D25;
+  --surface-card-subtle: #2B472D;
   --surface-input: #172D16;
   --surface-hover: #2B472D;
+
+  /* Button tokens */
+  --btn-primary-bg: #C7FF00;
+  --btn-primary-text: #172D16;
+  --btn-primary-hover: #B3E600;
+
   --on-lime: #172D16;
   --focus-ring: #C7FF00;
 }
 
+/* ===========================================================================
+   LIGHT MODE (High Contrast: Brand Lime Hero / Off-white Surfaces / Deep Green Text)
+   =========================================================================== */
 html.light {
   --brand-primary: #C2FF00;
   --brand-strong: #0F2411;
   --brand-surface: #E0EDCF;
-  --brand-surface-elevated: #F4F7EF;
+  --brand-surface-elevated: #EAF0E5;
   --brand-border: #A9C17D;
-  --brand-lime: #C2FF00;
-  --brand-lime-hover: #AEE000;
-  --brand-lime-muted: rgba(194, 255, 0, 0.24);
+  --brand-lime: #0F2411;
+  --brand-lime-hover: #172D16;
+  --brand-lime-muted: rgba(15, 36, 17, 0.1);
   --brand-offwhite: #F4F7EF;
   --brand-lightgreen: #EAF0E5;
+
+  /* Typography tokens - strict WCAG AA readability */
   --text-primary: #0F2411;
   --text-secondary: #344A32;
   --text-muted: #52684F;
-  --surface-card: #FFFFFF;
-  --surface-input: #F4F7EF;
-  --surface-hover: #E8F1DC;
+
+  /* Surface tokens */
+  --surface-card: #F4F7EF;
+  --surface-card-subtle: #EAF0E5;
+  --surface-input: #FFFFFF;
+  --surface-hover: #E0EDCF;
+
+  /* Button tokens */
+  --btn-primary-bg: #0F2411;
+  --btn-primary-text: #C2FF00;
+  --btn-primary-hover: #172D16;
+
   --on-lime: #0F2411;
   --focus-ring: #0F2411;
 }
@@ -55,8 +82,8 @@ html.light {
 html {
   scroll-behavior: smooth;
   font-family: var(--font-manrope);
-  background-color: #172D16;
-  color: #F4F7EF;
+  background-color: var(--brand-primary);
+  color: var(--text-primary);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -73,51 +100,36 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: var(--brand-primary);
+  color: var(--text-primary);
   transition: background-color 220ms ease, color 220ms ease;
 }
 
-html {
-  background-color: var(--brand-primary);
-  color: var(--text-primary);
-}
+/* ===========================================================================
+   LIGHT MODE OVERRIDES FOR EXISTING TAILWIND UTILITIES
+   Ensures 100% readability, zero low-contrast text, beautiful styling
+   =========================================================================== */
 
-body {
-  background-color: var(--brand-primary);
-  color: var(--text-primary);
-}
-
-/* Light surfaces preserve intentional hierarchy instead of globally inverting text. */
-html.light {
-  background-color: #F4F7EF;
-  color: var(--text-primary);
-}
-
-html.light body {
-  background-color: #F4F7EF;
-  color: var(--text-primary);
-}
-
+/* Hero & Main Sections with bg-brand-forest */
 html.light .bg-brand-forest {
-  background-color: #C2FF00;
-  color: #0F2411;
+  background-color: #C2FF00 !important;
+  color: #0F2411 !important;
 }
 
+html.light .bg-brand-forest text,
+html.light .bg-brand-forest .text-white {
+  color: #0F2411 !important;
+}
+
+html.light .bg-brand-forest .text-brand-gray-300,
+html.light .bg-brand-forest .text-brand-gray-400 {
+  color: #344A32 !important;
+}
+
+/* Soft Offwhite & Light Green Section Backgrounds */
 html.light .bg-brand-offwhite {
-  background-color: #F4F7EF;
-}
-
-html.light .bg-brand-dark {
-  background-color: #0F2411;
-  color: #F4F7EF;
-}
-
-html.light .bg-brand-surface,
-html.light .bg-brand-surface\/80,
-html.light .bg-brand-surface\/70,
-html.light .bg-brand-surface\/60,
-html.light .bg-brand-surface\/50,
-html.light .bg-brand-surface\/30 {
-  background-color: #E0EDCF;
+  background-color: #F4F7EF !important;
+  color: #0F2411 !important;
 }
 
 html.light .bg-brand-lightgreen,
@@ -126,53 +138,100 @@ html.light .bg-brand-lightgreen\/50,
 html.light .bg-brand-lightgreen\/40,
 html.light .bg-brand-lightgreen\/30,
 html.light .bg-brand-lightgreen\/20 {
-  background-color: #EAF0E5;
+  background-color: #EAF0E5 !important;
 }
 
-html.light .bg-white,
+/* Dark Header / Dark Footer */
+html.light .bg-brand-dark {
+  background-color: #0F2411 !important;
+  color: #F4F7EF !important;
+}
+
+/* Elevated & Surface Cards */
+html.light .bg-brand-surface {
+  background-color: #E0EDCF !important;
+  color: #0F2411 !important;
+}
+
+html.light .bg-brand-surface\/80,
+html.light .bg-brand-surface\/70,
+html.light .bg-brand-surface\/60,
+html.light .bg-brand-surface\/50,
+html.light .bg-brand-surface\/30 {
+  background-color: #E0EDCF !important;
+  color: #0F2411 !important;
+}
+
+html.light .bg-brand-surface-light,
+html.light .bg-brand-surface-light\/30,
+html.light .bg-brand-surface-light\/40 {
+  background-color: #EAF0E5 !important;
+}
+
+/* White Cards in Light Mode */
+html.light .bg-white {
+  background-color: #F4F7EF !important;
+  color: #0F2411 !important;
+}
+
 html.light .bg-white\/5,
 html.light .bg-white\/10 {
-  background-color: #FFFFFF;
+  background-color: rgba(15, 36, 17, 0.06) !important;
 }
 
+/* Text Colors in Light Mode */
 html.light .text-white,
 html.light .text-brand-offwhite {
-  color: #0F2411;
+  color: #0F2411 !important;
 }
 
-html.light .text-brand-forest,
 html.light .text-brand-dark,
-html.light .text-brand-surface,
-html.light .text-brand-gray-900,
-html.light .text-brand-gray-800,
-html.light .text-brand-gray-700,
-html.light .text-brand-gray-600 {
-  color: #0F2411;
+html.light .text-brand-forest {
+  color: #0F2411 !important;
+}
+
+html.light .text-brand-surface {
+  color: #344A32 !important;
+}
+
+html.light .text-brand-surface\/90,
+html.light .text-brand-surface\/80,
+html.light .text-brand-surface\/70 {
+  color: #344A32 !important;
 }
 
 html.light .text-brand-gray-200,
 html.light .text-brand-gray-300,
 html.light .text-brand-gray-400,
 html.light .text-brand-gray-500 {
-  color: #344A32;
+  color: #344A32 !important;
 }
 
+html.light .text-brand-gray-600,
+html.light .text-brand-gray-700,
+html.light .text-brand-gray-800,
+html.light .text-brand-gray-900 {
+  color: #0F2411 !important;
+}
+
+/* Accents & Highlights */
 html.light .text-brand-lime {
-  color: #0F2411;
+  color: #0F2411 !important;
 }
 
 html.light .text-brand-lime\/80,
 html.light .text-brand-lime\/70,
 html.light .text-brand-lime\/60 {
-  color: #344A32;
+  color: #344A32 !important;
 }
 
+/* Borders */
 html.light .border-brand-border,
 html.light .border-brand-border\/80,
 html.light .border-brand-border\/60,
 html.light .border-brand-border\/50,
 html.light .border-brand-border\/40 {
-  border-color: #A9C17D;
+  border-color: #A9C17D !important;
 }
 
 html.light .border-brand-surface\/20,
@@ -182,13 +241,22 @@ html.light .border-brand-surface\/30,
 html.light .border-brand-surface\/50,
 html.light .border-brand-surface\/60,
 html.light .border-brand-surface\/80 {
-  border-color: #A9C17D;
+  border-color: #A9C17D !important;
 }
 
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/20,
+html.light .border-white\/30,
+html.light .border-white\/40 {
+  border-color: #A9C17D !important;
+}
+
+/* Header in Light Mode */
 html.light header {
-  background-color: rgba(194, 255, 0, 0.96);
-  color: #0F2411;
-  border-bottom-color: #A9C17D;
+  background-color: rgba(194, 255, 0, 0.94) !important;
+  color: #0F2411 !important;
+  border-bottom-color: #A9C17D !important;
 }
 
 html.light header .text-brand-gray-200,
@@ -196,16 +264,38 @@ html.light header .text-brand-gray-300,
 html.light header .text-brand-gray-400,
 html.light header .hover\:text-white:hover,
 html.light header .text-white {
-  color: #344A32;
+  color: #344A32 !important;
 }
 
 html.light header .text-brand-lime {
-  color: #0F2411;
+  color: #0F2411 !important;
 }
 
-html.light .bg-brand-dark .text-white,
+/* Buttons in Light Mode: Primary button = dark green bg with lime text */
+html.light .bg-brand-lime {
+  background-color: #0F2411 !important;
+  color: #C2FF00 !important;
+}
+
+html.light .bg-brand-lime:hover,
+html.light .hover\:bg-brand-lime-hover:hover {
+  background-color: #172D16 !important;
+  color: #C2FF00 !important;
+}
+
+html.light .bg-brand-lime * {
+  color: inherit !important;
+}
+
+/* Footer in Light Mode: Remains dark forest green atmosphere for contrast & anchor */
+html.light footer {
+  background-color: #0F2411 !important;
+  color: #C4D0BD !important;
+  border-top-color: #233D25 !important;
+}
+
 html.light footer .text-white {
-  color: #F4F7EF;
+  color: #F4F7EF !important;
 }
 
 html.light footer .text-brand-gray-200,
@@ -213,25 +303,42 @@ html.light footer .text-brand-gray-300,
 html.light footer .text-brand-gray-400,
 html.light footer .text-gray-300,
 html.light footer .text-gray-400 {
-  color: #C4D0BD;
+  color: #C4D0BD !important;
 }
 
 html.light footer .text-brand-lime {
-  color: #C2FF00;
+  color: #C2FF00 !important;
 }
 
+html.light footer .bg-brand-surface,
+html.light footer .bg-brand-surface\/60 {
+  background-color: #172D16 !important;
+  color: #F4F7EF !important;
+  border-color: #233D25 !important;
+}
+
+html.light footer .bg-brand-lime {
+  background-color: #C2FF00 !important;
+  color: #0F2411 !important;
+}
+
+html.light footer .bg-brand-lime * {
+  color: #0F2411 !important;
+}
+
+/* Form Inputs in Light Mode */
 html.light input,
 html.light textarea,
 html.light select {
-  background-color: #F4F7EF;
-  color: #0F2411;
-  border-color: #A9C17D;
-  caret-color: #0F2411;
+  background-color: #FFFFFF !important;
+  color: #0F2411 !important;
+  border-color: #A9C17D !important;
+  caret-color: #0F2411 !important;
 }
 
 html.light input::placeholder,
 html.light textarea::placeholder {
-  color: #52684F;
+  color: #52684F !important;
   opacity: 1;
 }
 
@@ -259,6 +366,11 @@ html.dark :focus-visible {
   color: #172D16;
 }
 
+html.light ::selection {
+  background-color: #0F2411;
+  color: #C2FF00;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -272,6 +384,16 @@ html.dark :focus-visible {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3B553C;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #EAF0E5;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #A9C17D;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #344A32;
 }
 
 /* Subtle glow and utility effects */

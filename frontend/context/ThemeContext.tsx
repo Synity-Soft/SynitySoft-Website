@@ -18,9 +18,11 @@ const STORAGE_KEY = "synitysoft_theme_mode";
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mode, setModeState] = useState<ThemeMode>("system");
   const [resolvedMode, setResolvedMode] = useState<"light" | "dark">("dark");
+  const [mounted, setMounted] = useState(false);
 
-  // initialise from storage or system preference
+  // Initialise from storage on client mount
   useEffect(() => {
+    setMounted(true);
     try {
       const stored = localStorage.getItem(STORAGE_KEY) as ThemeMode | null;
       if (stored === "light" || stored === "dark" || stored === "system") {
@@ -29,32 +31,39 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } catch {}
   }, []);
 
-  // apply class on <html>
+  // Synchronise mode changes to <html> and react to system media query
   useEffect(() => {
     const root = document.documentElement;
-    const apply = (m: ThemeMode) => {
+
+    const applyTheme = (currentMode: ThemeMode) => {
       root.classList.remove("light", "dark");
       const isDark =
-        m === "dark" ||
-        (m === "system" &&
+        currentMode === "dark" ||
+        (currentMode === "system" &&
           window.matchMedia("(prefers-color-scheme: dark)").matches);
-      root.classList.add(isDark ? "dark" : "light");
-      root.dataset.theme = isDark ? "dark" : "light";
-      root.style.colorScheme = isDark ? "dark" : "light";
-      setResolvedMode(isDark ? "dark" : "light");
+
+      const target = isDark ? "dark" : "light";
+      root.classList.add(target);
+      root.dataset.theme = target;
+      root.style.colorScheme = target;
+      setResolvedMode(target);
     };
-    apply(mode);
+
+    applyTheme(mode);
+
     if (mode === "system") {
       const media = window.matchMedia("(prefers-color-scheme: dark)");
-      const handler = (e: MediaQueryListEvent) => {
-        root.classList.toggle("dark", e.matches);
-        root.classList.toggle("light", !e.matches);
-        root.dataset.theme = e.matches ? "dark" : "light";
-        root.style.colorScheme = e.matches ? "dark" : "light";
-        setResolvedMode(e.matches ? "dark" : "light");
+      const handleSystemChange = (e: MediaQueryListEvent) => {
+        const isDark = e.matches;
+        root.classList.remove("light", "dark");
+        root.classList.add(isDark ? "dark" : "light");
+        root.dataset.theme = isDark ? "dark" : "light";
+        root.style.colorScheme = isDark ? "dark" : "light";
+        setResolvedMode(isDark ? "dark" : "light");
       };
-      media.addEventListener("change", handler);
-      return () => media.removeEventListener("change", handler);
+
+      media.addEventListener("change", handleSystemChange);
+      return () => media.removeEventListener("change", handleSystemChange);
     }
   }, [mode]);
 
@@ -66,11 +75,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   const toggleMode = () => {
-    const isDark =
-      mode === "dark" ||
-      (mode === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setMode(isDark ? "light" : "dark");
+    // Cycle: system -> light -> dark -> system
+    if (mode === "system") setMode("light");
+    else if (mode === "light") setMode("dark");
+    else setMode("system");
   };
 
   return (

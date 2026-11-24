@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Sparkles, Terminal, Code2, ShieldAlert } from '@/components/ui/Icons';
+import { ArrowRight, Sparkles } from '@/components/ui/Icons';
 import { FloatingBrandElements } from '@/components/brand/FloatingBrandElements';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -65,7 +65,9 @@ export const HeroSection: React.FC = () => {
             className="mb-6 relative flex items-center justify-center"
           >
             {/* Soft pulsing lime backlight glow */}
-            <div className="absolute w-24 h-48 bg-brand-lime/20 rounded-full blur-2xl animate-pulse-glow" />
+            <div className={`absolute w-24 h-48 rounded-full blur-2xl animate-pulse-glow ${
+              isDarkMode ? 'bg-brand-lime/20' : 'bg-brand-surface/30'
+            }`} />
             
             <div className="relative w-12 h-30 sm:w-16 sm:h-40">
               <Image
@@ -73,7 +75,11 @@ export const HeroSection: React.FC = () => {
                 alt="SynitySoft Official Emblem"
                 fill
                 sizes="(max-width: 640px) 48px, 64px"
-                className="object-contain filter drop-shadow-[0_0_20px_rgba(199,255,0,0.4)]"
+                className={`object-contain filter ${
+                  isDarkMode 
+                    ? 'drop-shadow-[0_0_20px_rgba(199,255,0,0.4)]' 
+                    : 'drop-shadow-[0_0_15px_rgba(15,36,17,0.2)]'
+                }`}
                 priority
               />
             </div>
@@ -84,8 +90,8 @@ export const HeroSection: React.FC = () => {
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium tracking-wide bg-brand-surface/80 border border-brand-border text-brand-lime shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-brand-lime" />
               <span>{t.hero.badge}</span>
-              <span className="text-white/30">•</span>
-              <span className="text-white/80">{t.brand.tagline}</span>
+              <span className="opacity-40">•</span>
+              <span className="opacity-90">{t.brand.tagline}</span>
             </span>
           </motion.div>
 
@@ -97,14 +103,14 @@ export const HeroSection: React.FC = () => {
             {lang === 'en' ? (
               <>
                 Technology built around the way the{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime animate-pulse-glow">
+                <span className={isDarkMode ? "text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime animate-pulse-glow" : "text-brand-forest underline decoration-brand-border decoration-wavy decoration-2"}>
                   world needs it.
                 </span>
               </>
             ) : (
               <>
                 বিশ্বের বাস্তব প্রয়োজনের আঙ্গিকে{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime">
+                <span className={isDarkMode ? "text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime" : "text-brand-forest underline decoration-brand-border decoration-wavy decoration-2"}>
                   নির্মিত আধুনিক প্রযুক্তি।
                 </span>
               </>
