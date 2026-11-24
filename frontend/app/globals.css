@@ -203,6 +203,11 @@ html.light header .text-brand-lime {
   color: #0F2411;
 }
 
+html.light .bg-brand-dark .text-white,
+html.light footer .text-white {
+  color: #F4F7EF;
+}
+
 html.light input,
 html.light textarea,
 html.light select {

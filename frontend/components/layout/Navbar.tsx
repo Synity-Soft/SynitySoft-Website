@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Globe, ArrowUpRight, Sun, Moon } from '@/components/ui/Icons';
+import { Menu, X, Globe, ArrowUpRight, Sun, Moon, Monitor } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
@@ -14,8 +14,40 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { lang, setLang, toggleLang, t } = useLanguage();
-  const { mode, toggleMode } = useTheme();
-  const isDarkMode = mode === "dark";
+  const { mode, resolvedMode, setMode } = useTheme();
+  const isDarkMode = resolvedMode === "dark";
+  const ThemeOptions = ({ compact = false }: { compact?: boolean }) => (
+    <div
+      className={`flex items-center rounded-full border border-brand-border/80 bg-brand-surface/80 p-1 ${compact ? 'gap-0.5' : 'gap-0.5'}`}
+      role="radiogroup"
+      aria-label="Theme"
+    >
+      {([
+        ['light', 'Light', Sun],
+        ['dark', 'Dark', Moon],
+        ['system', 'System', Monitor],
+      ] as const).map(([value, label, Icon]) => (
+        <button
+          key={value}
+          type="button"
+          role="radio"
+          aria-checked={mode === value}
+          aria-label={`${label} theme`}
+          title={`${label} theme`}
+          onClick={() => setMode(value)}
+          className={`rounded-full transition-colors ${
+            compact ? 'p-1.5' : 'px-2 py-1'
+          } ${
+            mode === value
+              ? 'bg-brand-lime text-brand-forest'
+              : 'text-brand-gray-300 hover:text-white'
+          }`}
+        >
+          <Icon className={compact ? 'h-4 w-4' : 'h-3.5 w-3.5'} />
+        </button>
+      ))}
+    </div>
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,14 +100,7 @@ export const Navbar: React.FC = () => {
 
           {/* Right Action: Language Switcher & Contact Button */}
           <div className="hidden sm:flex items-center gap-3">
-  <button
-    type="button"
-    onClick={toggleMode}
-    className="p-2 rounded-full text-brand-gray-200 hover:text-white hover:bg-white/10 transition-colors"
-    aria-label="Toggle theme"
-  >
-    {mode === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-  </button>
+            <ThemeOptions />
             {/* Bilingual Switcher Pill */}
             <div className="flex items-center bg-brand-surface/80 border border-brand-border/80 rounded-full p-1 text-xs">
               <button
@@ -116,14 +141,7 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              type="button"
-              onClick={toggleMode}
-              className="p-2 rounded-lg text-brand-gray-200 hover:text-white hover:bg-white/10 transition-colors"
-              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-            >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </button>
+            <ThemeOptions compact />
             {/* Compact Lang Switcher for Mobile */}
             <button
               onClick={toggleLang}

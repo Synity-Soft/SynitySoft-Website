@@ -9,8 +9,8 @@ import { useTheme } from '@/context/ThemeContext';
 
 export const Footer: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
-  const { mode } = useTheme();
-  const isDarkMode = mode === "dark";
+  const { resolvedMode } = useTheme();
+  const isDarkMode = resolvedMode === "dark";
 
   return (
     <footer className="bg-brand-dark border-t border-brand-border/60 text-brand-gray-300 relative overflow-hidden">

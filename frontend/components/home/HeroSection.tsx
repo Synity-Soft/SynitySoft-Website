@@ -11,8 +11,8 @@ import { useTheme } from '@/context/ThemeContext';
 
 export const HeroSection: React.FC = () => {
   const { lang, t } = useLanguage();
-  const { mode } = useTheme();
-  const isDarkMode = mode === "dark";
+  const { resolvedMode } = useTheme();
+  const isDarkMode = resolvedMode === "dark";
   const shouldReduceMotion = useReducedMotion();
 
   // Animation variants for choreographed reveal
