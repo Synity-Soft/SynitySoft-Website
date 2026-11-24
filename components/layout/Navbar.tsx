@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, Globe, ArrowUpRight, Sun, Moon } from '@/components/ui/Icons';
 import { SynityLogo } from '@/components/brand/SynityLogo';
 import { useTheme } from '@/context/ThemeContext';
+import { useLanguage } from '@/context/LanguageContext';
 
 
 export const Navbar: React.FC = () => {
