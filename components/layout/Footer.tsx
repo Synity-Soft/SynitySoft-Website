@@ -10,11 +10,7 @@ import { useTheme } from '@/context/ThemeContext';
 export const Footer: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
   const { mode } = useTheme();
-  const isDarkMode =
-    mode === "dark" ||
-    (mode === "system" &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const isDarkMode = mode === "dark";
 
   return (
     <footer className="bg-brand-dark border-t border-brand-border/60 text-brand-gray-300 relative overflow-hidden">

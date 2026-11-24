@@ -15,11 +15,7 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const { lang, setLang, toggleLang, t } = useLanguage();
   const { mode, toggleMode } = useTheme();
-  const isDarkMode =
-    mode === "dark" ||
-    (mode === "system" &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const isDarkMode = mode === "dark";
 
   useEffect(() => {
     const handleScroll = () => {

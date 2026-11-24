@@ -12,11 +12,7 @@ import { useTheme } from '@/context/ThemeContext';
 export const HeroSection: React.FC = () => {
   const { lang, t } = useLanguage();
   const { mode } = useTheme();
-  const isDarkMode =
-    mode === "dark" ||
-    (mode === "system" &&
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const isDarkMode = mode === "dark";
   const shouldReduceMotion = useReducedMotion();
 
   // Animation variants for choreographed reveal
