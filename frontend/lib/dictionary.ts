@@ -313,6 +313,7 @@ export const content = {
           roleType: "leadership",
           bio: "Founder & Board Director at SynitySoft. Safin leads corporate development, strategic marketing (CMO), human resources, and business operations, driving SynitySoft's vision of purpose-built technology ecosystems.",
           expertise: ["Business Strategy", "Product Vision", "Operations Management", "Team Leadership"],
+          image: "/team/safin-khan.png",
           links: {
             email: "mailto:synitysoft@gmail.com",
           },
@@ -736,6 +737,7 @@ export const content = {
           roleType: "leadership",
           bio: "সিনিটিসফটের প্রতিষ্ঠাতা ও বোর্ড পরিচালক। সাফিন কোম্পানির সার্বিক ব্যবসায়িক উন্নয়ন, মার্কেটিং কৌশল (CMO), মানবসম্পদ ব্যবস্থাপনা এবং দীর্ঘমেয়াদি ইকোসিস্টেম সম্প্রসারণে নেতৃত্ব দেন।",
           expertise: ["বিজনেস স্ট্র্যাটেজি", "পণ্য পরিকল্পনা", "অপারেশনস ম্যানেজমেন্ট", "টিম লিডারশিপ"],
+          image: "/team/safin-khan.png",
           links: {
             email: "mailto:synitysoft@gmail.com",
           },
