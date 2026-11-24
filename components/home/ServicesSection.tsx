@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { 
   Cpu, 
   Globe, 
@@ -13,6 +14,7 @@ import {
   CheckCircle 
 } from '@/components/ui/Icons';
 import { useLanguage } from '@/context/LanguageContext';
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/ui/Reveal';
 
 const iconMap: Record<string, React.ReactNode> = {
   Cpu: <Cpu className="w-6 h-6" />,
@@ -31,7 +33,7 @@ export const ServicesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <Reveal direction="up" className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <span className="inline-block text-xs font-bold tracking-widest uppercase text-brand-surface bg-brand-lightgreen px-3.5 py-1.5 rounded-full mb-3 border border-brand-surface/20">
               {t.services.badge}
@@ -51,63 +53,65 @@ export const ServicesSection: React.FC = () => {
             <span>{lang === 'en' ? 'View all service specifications' : 'সকল সেবার বিস্তারিত দেখুন'}</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
+        </Reveal>
 
         {/* 6 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <StaggerContainer staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {t.services.items.map((service) => {
             const icon = iconMap[service.iconName] || <Cpu className="w-6 h-6" />;
 
             return (
-              <div
-                key={service.id}
-                className="bg-white rounded-3xl p-8 border border-brand-surface/10 hover:border-brand-surface/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  {/* Icon Box */}
-                  <div className="w-12 h-12 rounded-2xl bg-brand-forest text-brand-lime flex items-center justify-center mb-6 group-hover:scale-105 transition-transform duration-200 shadow-sm">
-                    {icon}
+              <StaggerItem key={service.id}>
+                <motion.div
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  className="bg-white rounded-3xl p-8 border border-brand-surface/10 hover:border-brand-surface/30 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between h-full group"
+                >
+                  <div>
+                    {/* Icon Box */}
+                    <div className="w-12 h-12 rounded-2xl bg-brand-forest text-brand-lime flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-brand-dark transition-all duration-300 shadow-sm">
+                      {icon}
+                    </div>
+
+                    {/* Title & Short Description */}
+                    <h3 className="text-xl font-bold text-brand-dark mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-brand-surface/80 leading-relaxed mb-6">
+                      {service.shortDesc}
+                    </p>
+
+                    {/* Deliverables tags */}
+                    <div className="space-y-2 pt-4 border-t border-brand-surface/10">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-surface/60 block">
+                        {lang === 'en' ? 'Key Deliverables:' : 'মূল আউটপুট:'}
+                      </span>
+                      <ul className="space-y-1.5">
+                        {service.deliverables.slice(0, 3).map((d, i) => (
+                          <li key={i} className="flex items-center gap-2 text-xs text-brand-surface/90">
+                            <CheckCircle className="w-3.5 h-3.5 text-brand-forest flex-shrink-0" />
+                            <span>{d}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
 
-                  {/* Title & Short Description */}
-                  <h3 className="text-xl font-bold text-brand-dark mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-brand-surface/80 leading-relaxed mb-6">
-                    {service.shortDesc}
-                  </p>
-
-                  {/* Deliverables tags */}
-                  <div className="space-y-2 pt-4 border-t border-brand-surface/10">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-brand-surface/60 block">
-                      {lang === 'en' ? 'Key Deliverables:' : 'মূল আউটপুট:'}
-                    </span>
-                    <ul className="space-y-1.5">
-                      {service.deliverables.slice(0, 3).map((d, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs text-brand-surface/90">
-                          <CheckCircle className="w-3.5 h-3.5 text-brand-forest flex-shrink-0" />
-                          <span>{d}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Footer link in card */}
+                  <div className="pt-6 mt-6 border-t border-brand-surface/10">
+                    <Link
+                      href={`/services#${service.id}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-forest group-hover:text-brand-surface"
+                    >
+                      <span>{lang === 'en' ? 'Consult regarding this service' : 'এই সেবার পরামর্শ নিন'}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
                   </div>
-                </div>
 
-                {/* Footer link in card */}
-                <div className="pt-6 mt-6 border-t border-brand-surface/10">
-                  <Link
-                    href={`/services#${service.id}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-forest group-hover:text-brand-surface"
-                  >
-                    <span>{lang === 'en' ? 'Consult regarding this service' : 'এই সেবার পরামর্শ নিন'}</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-
-              </div>
+                </motion.div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerContainer>
 
       </div>
     </section>
