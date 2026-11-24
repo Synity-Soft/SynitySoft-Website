@@ -97,14 +97,14 @@ export const HeroSection: React.FC = () => {
             {lang === 'en' ? (
               <>
                 Technology built around the way the{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-white to-brand-lime animate-pulse-glow">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime animate-pulse-glow">
                   world needs it.
                 </span>
               </>
             ) : (
               <>
                 বিশ্বের বাস্তব প্রয়োজনের আঙ্গিকে{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-white to-brand-lime">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-lime via-brand-strong to-brand-lime">
                   নির্মিত আধুনিক প্রযুক্তি।
                 </span>
               </>

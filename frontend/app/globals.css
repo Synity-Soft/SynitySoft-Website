@@ -208,6 +208,18 @@ html.light footer .text-white {
   color: #F4F7EF;
 }
 
+html.light footer .text-brand-gray-200,
+html.light footer .text-brand-gray-300,
+html.light footer .text-brand-gray-400,
+html.light footer .text-gray-300,
+html.light footer .text-gray-400 {
+  color: #C4D0BD;
+}
+
+html.light footer .text-brand-lime {
+  color: #C2FF00;
+}
+
 html.light input,
 html.light textarea,
 html.light select {
