@@ -10,16 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          forest: "#172D16",
-          dark: "#0F2411",
-          surface: "#233D25",
-          "surface-light": "#2E4E30",
-          border: "#3B553C",
-          lime: "#C7FF00",
-          "lime-hover": "#B3E600",
-          "lime-muted": "rgba(199, 255, 0, 0.15)",
-          offwhite: "#F4F7EF",
-          lightgreen: "#EAF0E5",
+          forest: "var(--brand-primary)",
+          dark: "var(--brand-strong)",
+          surface: "var(--brand-surface)",
+          "surface-light": "var(--brand-surface-elevated)",
+          border: "var(--brand-border)",
+          lime: "var(--brand-lime)",
+          "lime-hover": "var(--brand-lime-hover)",
+          "lime-muted": "var(--brand-lime-muted)",
+          offwhite: "var(--brand-offwhite)",
+          lightgreen: "var(--brand-lightgreen)",
           gray: {
             50: "#FAFAF9",
             100: "#F5F5F4",

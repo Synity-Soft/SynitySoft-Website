@@ -9,6 +9,47 @@
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-hind-siliguri: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif;
   --font-noto-bengali: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
+
+  /* Semantic theme tokens */
+  --brand-primary: #172D16;
+  --brand-strong: #0F2411;
+  --brand-surface: #233D25;
+  --brand-surface-elevated: #2B472D;
+  --brand-border: #3B553C;
+  --brand-lime: #C7FF00;
+  --brand-lime-hover: #B3E600;
+  --brand-lime-muted: rgba(199, 255, 0, 0.15);
+  --brand-offwhite: #F4F7EF;
+  --brand-lightgreen: #EAF0E5;
+  --text-primary: #F4F7EF;
+  --text-secondary: #C4D0BD;
+  --text-muted: #A7B6A1;
+  --surface-card: #233D25;
+  --surface-input: #172D16;
+  --surface-hover: #2B472D;
+  --on-lime: #172D16;
+  --focus-ring: #C7FF00;
+}
+
+html.light {
+  --brand-primary: #C2FF00;
+  --brand-strong: #0F2411;
+  --brand-surface: #E0EDCF;
+  --brand-surface-elevated: #F4F7EF;
+  --brand-border: #A9C17D;
+  --brand-lime: #C2FF00;
+  --brand-lime-hover: #AEE000;
+  --brand-lime-muted: rgba(194, 255, 0, 0.24);
+  --brand-offwhite: #F4F7EF;
+  --brand-lightgreen: #EAF0E5;
+  --text-primary: #0F2411;
+  --text-secondary: #344A32;
+  --text-muted: #52684F;
+  --surface-card: #FFFFFF;
+  --surface-input: #F4F7EF;
+  --surface-hover: #E8F1DC;
+  --on-lime: #0F2411;
+  --focus-ring: #0F2411;
 }
 
 html {
