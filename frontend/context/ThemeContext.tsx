@@ -6,6 +6,7 @@ export type ThemeMode = "light" | "dark" | "system";
 
 interface ThemeContextType {
   mode: ThemeMode;
+  resolvedMode: "light" | "dark";
   setMode: (mode: ThemeMode) => void;
   toggleMode: () => void;
 }
@@ -16,6 +17,7 @@ const STORAGE_KEY = "synitysoft_theme_mode";
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [mode, setModeState] = useState<ThemeMode>("system");
+  const [resolvedMode, setResolvedMode] = useState<"light" | "dark">("dark");
 
   // initialise from storage or system preference
   useEffect(() => {
@@ -32,19 +34,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const root = document.documentElement;
     const apply = (m: ThemeMode) => {
       root.classList.remove("light", "dark");
-      root.style.colorScheme = "normal";
-      if (m === "light") root.classList.add("light");
-      else if (m === "dark") root.classList.add("dark");
-      else {
-        // system – follow prefers-color-scheme
-        const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        root.classList.toggle("dark", isDark);
-        root.classList.toggle("light", !isDark);
-        root.style.colorScheme = isDark ? "dark" : "light";
-      }
-      if (m !== "system") {
-        root.style.colorScheme = m;
-      }
+      const isDark =
+        m === "dark" ||
+        (m === "system" &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.classList.add(isDark ? "dark" : "light");
+      root.dataset.theme = isDark ? "dark" : "light";
+      root.style.colorScheme = isDark ? "dark" : "light";
+      setResolvedMode(isDark ? "dark" : "light");
     };
     apply(mode);
     if (mode === "system") {
