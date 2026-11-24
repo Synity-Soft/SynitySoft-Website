@@ -59,6 +59,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="bg-brand-forest text-brand-offwhite antialiased min-h-screen flex flex-col">
+        <ScrollProgress />
         <LanguageProvider>
           <Navbar />
           <main className="flex-grow">
